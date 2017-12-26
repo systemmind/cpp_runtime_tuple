@@ -1,6 +1,6 @@
 Using example:
 
-```
+```cpp
 // The strings to indecates log level in human style. These values can be read from file.
 static constexpr const char* const str_error = "error";
 static constexpr const char* const str_warning = "warning";
