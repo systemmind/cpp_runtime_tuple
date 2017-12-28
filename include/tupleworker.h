@@ -43,7 +43,7 @@ template<typename ...Args>
 struct Each
 {
   template<typename Touch, typename End>
-  static inline each(Touch touch, End end, Args& ...args)
+  static inline void each(Touch touch, End end, Args& ...args)
   {
     auto tuple = std::make_tuple(args...);
     Each<decltype(tuple)>::each(touch, end, tuple);
@@ -55,7 +55,7 @@ struct Each<std::tuple<Args...> >
 {
   typedef std::tuple<Args...> TL;
   template<typename Touch, typename End>
-  inline static each(Touch& touch, End& end, TL& tuple)
+  inline static void each(Touch& touch, End& end, TL& tuple)
   {
     typedef TupleWorker<Touch, End, TL> Worker;
     Worker(touch, end, tuple).each();
@@ -67,7 +67,7 @@ struct Each<std::tuple<Args...>& >
 {
   typedef std::tuple<Args...> TL;
   template<typename Touch, typename End>
-  inline static each(Touch& touch, End& end, TL& tuple)
+  inline static void each(Touch& touch, End& end, TL& tuple)
   {
     Each<TL>::each(touch, end, tuple);
   }
